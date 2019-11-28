@@ -32,6 +32,7 @@ export default class AllVelib extends React.Component {
                     onPress={() => {
                         this.props.navigation.navigate('Details', {
                             station_code: result.fields.station_code,
+                            station_name: result.fields.station_name
                         })
                     }}
                     key={i}

@@ -6,20 +6,31 @@ export default class Details extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(this.props.navigation.getParam('station_code'))
-    //.log(this.props.state.param);
+    state = { station_code: "", station_name: "", details: ""};
   }
+
+  componentWillMount() {
+    this.setState({ 
+      station_code: this.props.navigation.getParam('station_code'), 
+      station_name: this.props.navigation.getParam('station_name')
+    })
+  }
+
   render() {
+    let station_name = ""
+    if(this.state.station_name != "") {
+      station_name = this.state.station_name;
+  }
     return (
       <View style={styles.container}>
-       <Text>Detail de la station :</Text>
+        <Text>Detail de la station : { station_name != "" && station_name}</Text>
       </View>
     );
   }
 }
 
 
-const styles = StyleSheet.create({  
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',

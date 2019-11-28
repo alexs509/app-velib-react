@@ -7,7 +7,6 @@ import Constants from 'expo-constants';
 export default class Home extends React.Component {
     constructor() {
         super();
-        this.onPressButton = this.onPressButton.bind(this);
         this.spinValue = new Animated.Value(0)
     }
 
@@ -26,7 +25,6 @@ export default class Home extends React.Component {
             }
         ).start(() => this.spin())
     }
-
 
     render() {
         const spin = this.spinValue.interpolate({
@@ -49,20 +47,12 @@ export default class Home extends React.Component {
                         </View>
                         <View>
                             <AllVelib navigation={this.props.navigation} />
-                            <Button
-                                title="Go to Jane's profile"
-                                onPress={this.onPressButton}
-                            />
                         </View>
                     </ScrollView>
                 </SafeAreaView>
             </React.Fragment>
         );
     }
-    onPressButton() {
-        this.props.navigation.navigate('Details')
-    }
-
 }
 
 const styles = StyleSheet.create({
