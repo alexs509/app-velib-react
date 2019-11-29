@@ -47,7 +47,7 @@ export default class AllVelib extends React.Component {
         return (
             <View>
                 <Text>Liste des velib</Text>
-                {velib != "" && geo}
+                {velib != "" ? geo : <Text>Chargement en cours</Text>}
             </View>
         );
     }
