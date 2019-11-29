@@ -12,7 +12,9 @@ export default class AllVelib extends React.Component {
 
 
     setItem(datas, datas2) {
-        AsyncStorage.setItem('favorite', JSON.stringify([]));
+        let aa = this.alreadyInFav(datas);
+        //AsyncStorage.setItem('favorite', JSON.stringify([]));
+        if(aa == true) {
         AsyncStorage.getItem('favorite').then((value) => {
             !value && AsyncStorage.setItem('favorite', JSON.stringify([]));
             let val = JSON.parse(value);
@@ -20,6 +22,18 @@ export default class AllVelib extends React.Component {
             AsyncStorage.setItem('favorite', JSON.stringify(val));
             this.forceUpdate();
         });
+    }
+    this.forceUpdate();
+    }
+
+    alreadyInFav(data) {
+        let bool = true;
+        fav.map((result) => {
+            if(result.code == data) {
+                 bool = false
+            }
+        });
+        return bool;
     }
 
 
@@ -39,7 +53,6 @@ export default class AllVelib extends React.Component {
     render() {
         const { velib } = this.state;
         let geo = "";
-        let t = fav;
         AsyncStorage.getItem('favorite').then((value) => {
             if (value != null && value != undefined) {
                 fav = JSON.parse(value)
