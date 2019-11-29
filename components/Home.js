@@ -1,8 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Animated, Image, Easing, SafeAreaView, ScrollView } from 'react-native';
 import AllVelib from './AllVelib';
-import Constants from 'expo-constants';
-
 
 export default class Home extends React.Component {
     constructor() {
@@ -19,9 +17,8 @@ export default class Home extends React.Component {
         Animated.timing(
             this.spinValue,
             {
-                toValue: 1,
-                duration: 4000,
-                easing: Easing.linear
+                toValue: 50,
+                duration: 2000
             }
         ).start(() => this.spin())
     }
@@ -29,20 +26,20 @@ export default class Home extends React.Component {
     render() {
         const spin = this.spinValue.interpolate({
             inputRange: [0, 1],
-            outputRange: ['0deg', '360deg']
+            outputRange: [0, 10]
         })
         return (
             <React.Fragment>
                 <SafeAreaView style={styles.container}>
                     <ScrollView style={styles.scrollView}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: "slategrey" }}>
+                        <View style={{  backgroundColor: "slategrey" }}>
                             <Animated.Image
                                 style={{
-                                    width: 227,
-                                    height: 200,
-                                    transform: [{ rotate: spin }]
+                                    width: 100,
+                                    height: 100,
+                                    transform: [{ translateX: spin }]
                                 }}
-                                source={{ uri: 'https://s3.amazonaws.com/media-p.slid.es/uploads/alexanderfarennikov/images/1198519/reactjs.png' }}
+                                source={{ uri: 'https://www.icone-png.com/png/10/10388.png' }}
                             />
                         </View>
                         <View>

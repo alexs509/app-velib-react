@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import { ListItem } from 'react-native-elements';
 
 export default class AllVelib extends React.Component {
@@ -43,10 +43,26 @@ export default class AllVelib extends React.Component {
         }
 
         return (
-            <View>
-                <Text>Liste des velib</Text>
+            <View style={styles.container}>
+                <Text style={styles.titre}>Liste des velib</Text>
                 {velib != "" ? geo : <Text>Chargement en cours</Text>}
             </View>
         );
     }
 }
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+      },
+    titre: {
+      fontWeight: 'bold',
+      color: 'goldenrod',
+      justifyContent: 'center',
+      alignItems: 'center',
+      textAlign: 'center',
+      fontSize:25
+    },
+  });
+  

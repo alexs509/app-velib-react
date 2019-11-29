@@ -15,11 +15,17 @@ const MainNavigator = createStackNavigator({
   Home: { screen: Home,
     navigationOptions: {
       headerBackTitle: 'Retour',
-      title:'Accueil'
+      title:'Accueil',
+      headerStyle: {
+        fontWeight: 'bold',
+      },
     } },
   Details: { screen: Details,
     navigationOptions: {
-      title:'Détail'
+      title:'Détail',
+      headerStyle: {
+        fontWeight: 'bold',
+      }
     } }
 });
 
