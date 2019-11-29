@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { ListItem, Button } from 'react-native-elements';
+import Icon from '@expo/vector-icons/FontAwesome';
 
 export default class AllVelib extends React.Component {
     constructor() {
@@ -34,10 +35,23 @@ export default class AllVelib extends React.Component {
                         })
                     }}
                     key={i}
-                    title={i + '- ' + result.fields.station_name}
+                    title={
+                        <View >
+                    <Text>{i + '- ' + result.fields.station_name}</Text>
+                    <View style={{flex:1, alignItems:"flex-end"}}>
+                    <Button
+                        style={{width:45,flex:1, alignItems:"flex-end"}}
+                            type="clear"
+                            icon={
+                              <Icon
+                                name="heart-o"
+                                size={25}
+                                color="red"
+                              />
+                            }
+                          /></View></View>}
                     subtitle={'Nombre de vélo dispo : ' + result.fields.nbebike.toString() + ' 🚴‍♂️'}
                     bottomDivider
-                    chevron
                 />
             ));
         }

@@ -11,7 +11,7 @@ export default class Location extends React.Component {
       position => {
         const location = position;
         this.setState({ location });
-        return fetch('https://opendata.paris.fr/api/records/1.0/search/?dataset=velib-disponibilite-en-temps-reel&rows=2&facet=overflowactivation&facet=creditcard&facet=kioskstate&facet=station_state&geofilter.distance=+' + this.state.location.coords.latitude + '%2C' + this.state.location.coords.longitude + '%2C5000')
+        return fetch('https://opendata.paris.fr/api/records/1.0/search/?dataset=velib-disponibilite-en-temps-reel&rows=19&facet=overflowactivation&facet=creditcard&facet=kioskstate&facet=station_state&geofilter.distance=+' + this.state.location.coords.latitude + '%2C' + this.state.location.coords.longitude + '%2C15000')
           .then((response) => response.json())
           .then((responseJson) => {
             this.setState({
