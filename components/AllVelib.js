@@ -1,8 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { ListItem } from 'react-native-elements';
-import Constants from 'expo-constants';
-
 
 export default class AllVelib extends React.Component {
     constructor() {
