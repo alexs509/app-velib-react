@@ -82,7 +82,7 @@ export default class Details extends React.Component {
                 <Text>🚴‍♀️ - Nombre vélo électrique : <Text style={styles.bold}>{details.fields.nbebike}</Text> </Text>
                 <Text>🔓 - Nmbre de bornes disponibles : <Text style={styles.bold}>{details.fields.nbfreedock}/{details.fields.nbedock}</Text> </Text>
                 <Text>🔢 - Nombre vélo en PARK+ : <Text style={styles.bold}>{details.fields.nbbikeoverflow}/{details.fields.maxbikeoverflow}</Text> </Text>
-                <Text>💳 - Achat possible en station (CB) : <Text style={styles.bold}>{details.fields.creditcard}</Text> </Text>
+                <Text>💳 - Achat possible en station (CB) : <Text style={styles.bold}>{details.fields.creditcard == "yes" ? "oui" : "non"}</Text> </Text>
               </View>
             }
           </View>

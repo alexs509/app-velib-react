@@ -34,7 +34,7 @@ export default class AllVelib extends React.Component {
                         })
                     }}
                     key={i}
-                    title={i + '/ ' + result.fields.station_name}
+                    title={i + '- ' + result.fields.station_name}
                     subtitle={'Nombre de vélo dispo : ' + result.fields.nbebike.toString() + ' 🚴‍♂️'}
                     bottomDivider
                     chevron

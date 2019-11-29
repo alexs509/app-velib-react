@@ -32,7 +32,7 @@ export default class Home extends React.Component {
             <React.Fragment>
                 <SafeAreaView style={styles.container}>
                     <ScrollView style={styles.scrollView}>
-                        <View style={{  backgroundColor: "slategrey" }}>
+                        <View style={{  backgroundColor: "#FCFCFC" }}>
                             <Animated.Image
                                 style={{
                                     width: 100,
