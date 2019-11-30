@@ -10,28 +10,34 @@ export default class AllVelib extends React.Component {
         fav = "";
     }
 
+    resetFav() {
+        AsyncStorage.setItem('favorite', JSON.stringify([]));
+        setInterval(
+            () => this.forceUpdate(),
+            500
+          );
+    }
 
     setItem(datas, datas2) {
-        let aa = this.alreadyInFav(datas);
-        //AsyncStorage.setItem('favorite', JSON.stringify([]));
-        if(aa == true) {
-        AsyncStorage.getItem('favorite').then((value) => {
-            !value && AsyncStorage.setItem('favorite', JSON.stringify([]));
-            let val = JSON.parse(value);
-            val = [...val, { code: datas, name: datas2 }];
-            AsyncStorage.setItem('favorite', JSON.stringify(val));
-            this.forceUpdate();
-        });
-    }
-    this.forceUpdate();
+        let check = this.alreadyInFav(datas);
+        if (check == true) {
+            AsyncStorage.getItem('favorite').then((value) => {
+                !value && AsyncStorage.setItem('favorite', JSON.stringify([]));
+                let val = JSON.parse(value);
+                val = [...val, { code: datas, name: datas2 }];
+                AsyncStorage.setItem('favorite', JSON.stringify(val));
+                setInterval(
+                    () => this.forceUpdate(),
+                    500
+                  );
+            });
+        }
     }
 
     alreadyInFav(data) {
         let bool = true;
         fav.map((result) => {
-            if(result.code == data) {
-                 bool = false
-            }
+            result.code == data ? bool = false : '';
         });
         return bool;
     }
@@ -97,13 +103,30 @@ export default class AllVelib extends React.Component {
 
         return (
             <View style={styles.container}>
-                <Text style={styles.titre}>Favorite Liste</Text><Badge status="warning" value={<Text>{fav ? fav.length : "0" }</Text>} />
+                <Text style={styles.titre}>Favorite Liste</Text><Badge status="warning" value={<Text>{fav ? fav.length : "0"}</Text>} />
+                { fav != ""  &&
+                <Button
+                style={{ width: 150, alignSelf: "center"}}
+                type="clear"
+                title="Vider la liste"
+                bottomDivider
+                    onPress={() => {
+                        this.resetFav();
+                    }}></Button>
+                }
                 {fav != "" &&
                     fav.map((result, i) => (
                         <ListItem
+                        onPress={() => {
+                            this.props.navigation.navigate('Details', {
+                                station_code: result.code,
+                                station_name: result.name
+                            })
+                        }}
                             key={i}
                             title={result.name}
                             subtitle={result.code}
+                            chevron
                         />
                     ))
                 }
