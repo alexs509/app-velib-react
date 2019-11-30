@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, ActivityIndicator } from 'react-native';
-import MapView, { AnimatedRegion, Animated, Marker } from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 
 export default class Location extends React.Component {
   constructor(props) {
@@ -28,47 +28,37 @@ export default class Location extends React.Component {
     );
   }
 
-
   render() {
-    let lat = 48.865983;
-    let long = 2.275725;
     let coord = {
       latitude: null,
       longitude: null
     }
-    let coord2 = {
-      latitude: 48.865983,
-      longitude: 2.275725
-
-    }
     if (this.state.location != null) {
-      console.log("state");
       coord.latitude = this.state.location.coords.latitude;
       coord.longitude = this.state.location.coords.longitude;
     }
 
     return (
       <View style={styles.container}>
-
         { this.state.location &&
         <MapView showsUserLocation={true} style={styles.map}
           initialRegion={{
             latitude: coord.latitude,
             longitude: coord.longitude,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+            latitudeDelta: 0.00922,
+            longitudeDelta: 0.00421,
           }}>
-            
 
           {this.state.all && this.state.all.map(marker => (
             <View key={marker.fields.station_name}>
               <Marker
+                image={require('../assets/pin.png')}
                 coordinate={{
                   latitude: marker.fields.geo[0],
                   longitude: marker.fields.geo[1]
                 }}
                 title={marker.fields.station_name}
-                description={marker.fields.station_name}
+                description={'Nombre de vélo dispo : ' + Number(marker.fields.nbebike+marker.fields.nbbike) + ' 🚴‍♂️'}
               />
             </View>
           ))}
@@ -77,7 +67,7 @@ export default class Location extends React.Component {
 
         {!this.state.all &&
           <View>
-            <ActivityIndicator size="large" color="#0000ff" />
+            <ActivityIndicator size="large" color="#DAA520" />
             <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
               Localisation en cours
         </Text>

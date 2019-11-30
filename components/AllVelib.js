@@ -95,7 +95,7 @@ export default class AllVelib extends React.Component {
                                         />
                                     }
                                 /></View></View>}
-                    subtitle={'Nombre de vélo dispo : ' + result.fields.nbebike.toString() + ' 🚴‍♂️'}
+                    subtitle={'Nombre de vélo dispo : ' + Number(result.fields.nbebike+result.fields.nbbike) + ' 🚴‍♂️'}
                     bottomDivider
                 />
             ));
