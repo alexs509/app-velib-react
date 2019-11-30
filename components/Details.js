@@ -17,13 +17,11 @@ export default class Details extends React.Component {
         this.setState({
           details: responseJson.records,
         });
-        console.log("dedans");
       })
       .catch((error) => {
         console.error(error);
       });
   }
-
 
   componentWillMount() {
     this.setState({

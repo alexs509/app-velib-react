@@ -10,6 +10,19 @@ export default class AllVelib extends React.Component {
         fav = "";
     }
 
+    componentDidMount() {
+        return fetch('https://opendata.paris.fr/api/records/1.0/search/?dataset=velib-disponibilite-en-temps-reel&rows=20')
+            .then((response) => response.json())
+            .then((responseJson) => {
+                this.setState({
+                    velib: responseJson.records,
+                });
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
     resetFav() {
         AsyncStorage.setItem('favorite', JSON.stringify([]));
         setInterval(
@@ -43,20 +56,6 @@ export default class AllVelib extends React.Component {
             result.code == data ? bool = false : '';
         });
         return bool;
-    }
-
-
-    componentDidMount() {
-        return fetch('https://opendata.paris.fr/api/records/1.0/search/?dataset=velib-disponibilite-en-temps-reel&rows=20')
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.setState({
-                    velib: responseJson.records,
-                });
-            })
-            .catch((error) => {
-                console.error(error);
-            });
     }
 
     render() {
@@ -146,7 +145,6 @@ export default class AllVelib extends React.Component {
         );
     }
 }
-
 
 const styles = StyleSheet.create({
     container: {
